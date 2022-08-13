@@ -1,7 +1,5 @@
 # Basics
 
-What We'll Learn?
-
 - **Why ReactJS?**
 - **JSX**
 - **Custom Components**
