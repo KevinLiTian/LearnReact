@@ -1,0 +1,83 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    font-family: Inter;
+}
+
+nav {
+    height: 80px;
+    display: flex;
+    padding: 20px 36px;
+    box-shadow: 0px 3px 7.5px rgba(0, 0, 0, 0.1);
+}
+
+nav>img {
+    max-width: 150px;
+}
+
+.Hero {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.Hero>img {
+    width: 60%;
+    padding-top: 30px;
+    margin: auto;
+}
+
+.Hero--Text {
+    width: 60%;
+    margin: auto;
+    padding-top: 50px;
+}
+
+.Hero--Text>h1 {
+    font-size: 35px;
+}
+
+.Hero--Text>p {
+    padding-top: 15px;
+    font-size: 18px;
+}
+
+.Card--Body {
+    width: 175px;
+    font-size: 12px;
+}
+
+.Card--Image {
+    width: 100%;
+}
+
+.Card--Stats {
+    margin-top: 9px;
+}
+
+.Card--Stats>img {
+    margin-right: 2px;
+}
+
+.Card--Stats .firstspan {
+    padding-right: 2px;
+}
+
+.Card--Stats .otherspan {
+    color: #918E9B;
+}
+
+@media (max-width: 992px) {
+    .Hero>img {
+        width: 75%;
+    }
+
+    .Hero--Text {
+        width: 75%;
+    }
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: local('Inter'), url(./fonts/Inter.ttf) format('ttf');
+}
