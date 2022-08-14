@@ -55,6 +55,6 @@ npm start
 
 If everything went well, a webpage like the figure below should appear:
 
-Figure 1
+<img width="1470" alt="1" src="https://user-images.githubusercontent.com/99038613/184518375-89fe192d-7025-43c9-9ef4-48eaab78a025.png">
 
 This is the React App default view. Now we can start developing React application with this framework, first by deleting everything in the `src` directory as we don't need the default view
