@@ -4,7 +4,7 @@ So far we have been hard coding all the HTML contents, which is not reusable and
 
 More likely, is that they update the database and the front-end HTML will re-use the reusable components and render with new data. For example
 
-Figure 1
+<img width="1281" alt="Screen Shot 2022-08-14 at 2 08 33 PM" src="https://user-images.githubusercontent.com/99038613/184551349-1c386f81-fc99-4f0a-819c-2063deecc7e5.png">
 
 These movies all have the same HTML structure, but with different contents, which means IMDb website most likly is reusing the same component, and render it with different data in the database everytime
 
