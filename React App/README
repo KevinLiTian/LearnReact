@@ -52,3 +52,9 @@ npx create-react-app my-app
 cd my-app
 npm start
 ```
+
+If everything went well, a webpage like the figure below should appear:
+
+Figure 1
+
+This is the React App default view. Now we can start developing React application with this framework, first by deleting everything in the `src` directory as we don't need the default view
