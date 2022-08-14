@@ -63,7 +63,7 @@ This is the React App default view. Now we can start developing React applicatio
 
 Now we can practice using React by building a simple project, a static mobile "React Facts" info site, which looks like this
 
-Figure 1
+<img width="565" alt="Screen Shot 2022-08-13 at 9 44 37 PM" src="https://user-images.githubusercontent.com/99038613/184521676-b0b54963-e316-4edc-a790-12bdc51dfd5b.png">
 
 Whenever we start a project, the first thing to do should be a mental outline of what structure and components should we use, especially if we already have the design/look of the project
 
@@ -90,7 +90,7 @@ Then, we can start brainstorming what HTML elements we possibly going to use in 
 
 ### Project Setup
 
-After deleting everything in the `src` directory, start by creating the following directories and files:
+After deleting everything in the `src` directory, start by creating the following directories and files in the `src` directory:
 
 - `Components`
   - `Navbar.js`
