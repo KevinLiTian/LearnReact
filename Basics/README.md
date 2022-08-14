@@ -364,3 +364,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(<Page />);
 It might seem not necessary since it's such a tiny HTML, but imagine working with a large project, it's convenient if you are able to simply insert a navbar to pages just by rendering your `<Header />` component rather than copy and paste the whole navbar HTML over and over again
 
 Afterwards, you can practice adding `className` to HTML elements in JSX, then select and style them in a CSS file, create your first React website!
+
+Check the [`quickstart`](quickstart/) directory for an example React website
