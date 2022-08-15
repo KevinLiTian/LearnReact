@@ -212,6 +212,8 @@ It doesn't, since we are setting up an event handler, and event handler should b
 <h1 onClick={() => props.click(name)}>{props.title}</h1>
 ```
 
+Check [box](./box/) for an example project
+
 ## Dynamic Style
 
 React also gives us the ability to write CSS in JavaScript:
