@@ -6,8 +6,9 @@ This is my journey of learning ReactJS, feel free to follow along! It is project
 
 ## Overview
 
-|                           |                                                                 |
-| :-----------------------: | :-------------------------------------------------------------: |
-|     [Basics](Basics/)     |   Learn the basics of ReactJS, why React, JSX and components    |
-| [React App](React%20App/) | Create your first React App with Node.js & Node Package Manager |
-|      [Props](Props/)      |       Reusable & composable components, data-driven React       |
+|            Title            |                           Description                           |
+| :-------------------------: | :-------------------------------------------------------------: |
+|     [Basics](./Basics/)     |   Learn the basics of ReactJS, why React, JSX and components    |
+| [React App](./React%20App/) | Create your first React App with Node.js & Node Package Manager |
+|      [Props](./Props/)      |       Reusable & composable components, data-driven React       |
+|    [Dynamic](./Dynamic/)    |    Interactive React App, state, effects and event listeners    |

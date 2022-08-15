@@ -1,0 +1,10 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    font-family: Inter;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: local('Inter'), url(./fonts/Inter.ttf) format('ttf');
+}
