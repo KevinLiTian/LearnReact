@@ -1,10 +1,71 @@
 * {
     box-sizing: border-box;
     margin: 0;
-    font-family: Inter;
+    font-family: "Karla", sans-serif;
+}
+
+header {
+    display: flex;
+    background: linear-gradient(90deg, #672280, 1.18%, #A626D3 100%);
+    align-items: center;
+    height: 65px;
+    padding: 20px;
+    color: white;
+}
+
+header>img {
+    margin-right: 8px;
+}
+
+header>h3 {
+    margin-left: auto;
+}
+
+.meme {
+    padding: 3rem;
+    text-align: center;
+}
+
+.meme--container {
+    width: 80%;
+    margin: auto;
+}
+
+input[type="text"] {
+    width: 47%;
+    height: 3rem;
+    border: 1px solid lightgray;
+    border-radius: 6px;
+    text-indent: 10px;
+    font-size: 16px;
+}
+
+input[type="text"]:first-child {
+    margin-right: 6%;
+}
+
+button {
+    width: 100%;
+    margin-top: 1.5rem;
+    height: 3rem;
+    background: linear-gradient(90deg, #711F8D, 1.14%, #A818DA 100%);
+    border: none;
+    border-radius: 6px;
+    color: white;
+}
+
+.meme--image--container {
+    width: 80%;
+    margin: auto;
+    margin-top: 3rem;
+}
+
+.meme--image--container>img {
+    width: 100%;
+    max-width: 600px;
 }
 
 @font-face {
-    font-family: 'Inter';
-    src: local('Inter'), url(./fonts/Inter.ttf) format('ttf');
+    font-family: 'Karla';
+    src: local('Karla'), url(./fonts/Inter.ttf) format('ttf');
 }
