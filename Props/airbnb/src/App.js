@@ -4,21 +4,18 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Card from "./components/Card";
 
-import KZ from "./images/KZ.svg";
+import data from "./data";
 
 export default function App() {
+  const Cards = data.map((item) => {
+    return <Card key={item.id} item={item} />;
+  });
+
   return (
     <div className="container">
       <Navbar />
       <Hero />
-      <Card
-        img={KZ}
-        rating="5.0"
-        reviewCount={6}
-        country="USA"
-        title="Life Lessons with Katie Zaferes"
-        price={136}
-      />
+      <section className="cards-list">{Cards}</section>
     </div>
   );
 }

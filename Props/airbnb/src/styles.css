@@ -42,9 +42,23 @@ nav>img {
     font-size: 18px;
 }
 
-.Card--Body {
-    width: 175px;
-    font-size: 12px;
+.cards-list {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 20px;
+    overflow-x: auto;
+    justify-content: center;
+    padding-block: 30px;
+    margin-bottom: 20px;
+}
+
+.Card {
+    width: 275px;
+    font-size: 15px;
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    position: relative;
 }
 
 .Card--Image {
@@ -52,11 +66,7 @@ nav>img {
 }
 
 .Card--Stats {
-    margin-top: 9px;
-}
-
-.Card--Stats>img {
-    margin-right: 2px;
+    margin-block: 10px 8px;
 }
 
 .Card--Stats .firstspan {
@@ -67,6 +77,22 @@ nav>img {
     color: #918E9B;
 }
 
+.card--title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-bottom: 5px;
+}
+
+.card--badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: white;
+    padding: 5px 7px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
 @media (max-width: 992px) {
     .Hero>img {
         width: 75%;
@@ -74,6 +100,11 @@ nav>img {
 
     .Hero--Text {
         width: 75%;
+    }
+
+    .cards-list {
+        justify-content: flex-start;
+        padding-inline: 50px;
     }
 }
 

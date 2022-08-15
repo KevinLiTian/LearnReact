@@ -129,3 +129,67 @@ So far, we have only been passing string type data as props, but since we can wr
     complex={[{JO1:"This is JavaScript Object 1"}, {JO2:"This is JavaScript Object 2"}]}
 />
 ```
+
+## Array Map
+
+JavaScript array prototype has a built-in method called `map`, where each array element will go through a function to generate a new array:
+
+```JS
+const array1 = [1, 4, 9, 16];
+
+// pass a function to map
+const map1 = array1.map(x => x * 2);
+
+console.log(map1);
+// expected output: Array [2, 8, 18, 32]
+
+```
+
+This could be especially useful when it comes to React, since JSX syntax requires elements to have HTML tags, where we can use the `map` function to apply the desired HTML tags as strings to array of data and then pass the processed data as props to render
+
+```JSX
+const names = ["alice", "bob", "charlie", "danielle"];
+const processed_names = names.map(name => {
+    `<h1>${name[0].toUpperCase() + name.slice(1)}</h1>`
+});
+```
+
+Or we can even do better by creating an array of components
+
+```JSX
+const names = ["alice", "bob", "charlie", "danielle"];
+const Names = names.map(name => {
+    return <Person name={name} />
+});
+
+function App() {
+    return (
+        {Names}
+    );
+}
+```
+
+The biggest benefit of using `map` is that whenever the data changes, our code handles it dynamically without the need to constantly updating our HTML
+
+## Conditional Rendering
+
+A lot of the times HTML will be different based on different conditions. For example, if a user is visiting a profile page and that profile happens to be this very user's own profile, we want to render an edit button, otherwise we don't want to render this button to give others the ability to modify this profile
+
+Since we are using React, which is just JavaScript, we have the ability to do logic like any other programming languages (HTML & CSS are not programming languages!)
+
+We can achieve this by using some logic expression:
+
+```JSX
+function App() {
+    const condition = false;
+    return(
+        {condition === true && <h1>Render this!<h1/>}
+    );
+}
+```
+
+Logical AND (`&&`) requires both conditions to be true so that the joint is true, so if the first condition is already false, the program will not bother to check the second condition and move on, and that's the hack here. We put the condition we want to be true when rendering as the first condition, if this condition is false, the program will skip the latter condition, where we put the element we want to render
+
+Take a minute to understand this process and be sure to know how this hack works
+
+Check an example of an [airbnb experience clone](./airbnb/) that uses props and data mapping
