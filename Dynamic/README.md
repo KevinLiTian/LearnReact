@@ -63,7 +63,9 @@ function App() {
 
     function addItem() {
         const newItem = `<p>Item ${itemArray.length + 1}</p>`;
-        setItemArray(prevState => [...prevState, newItem]);
+        setItemArray(prevState => (
+            [...prevState, newItem]
+        ));
     }
 
     return (
@@ -123,8 +125,13 @@ What if the new state adds on the previous state, for example push an item into 
 ```JSX
 const [itemArray, setItemArray] = React.useState([]);
 const newItem = 0;
-setItemArray([...itemArray, newItem]);
-setItemArray([...itemArray, prevArray.length]);
+setItemArray(prevArray => (
+    [...prevArray, newItem]
+));
+
+setItemArray(prevArray => (
+    [...prevArray, prevArray.length]
+));
 ```
 
 The spread operator spreads the previous array elements, then we add a `newItem` to the end of the array. Why can't we just use `array.push()`? That's because `push` method changes the original state directly, which we don't want since we only want to use `setItemArray` function to change states; also, `push` method doesn't return the new array, we want a new array as the input to the `setItemArray` function
@@ -139,10 +146,10 @@ const [contact, setContact] = React.useState({
     email: "johndoe@gmail.com"
 });
 
-setContact({
-    ...contact,
+setContact(prevContact => ({
+    ...prevContact,
     phone: "222-222-2222"
-});
+}));
 ```
 
 We use `...` to spread all information of the previous state to a new object, then changing the "phone" property only. If we don't use `...contact` and only write the phone property, then the phone property would be the only thing left in the new state
@@ -230,3 +237,297 @@ function App() {
     );
 }
 ```
+
+## React Form
+
+In vanilla JS with HTML forms, we add event handler to forms like `onsubmit`, but in React, we do it with states since React will only monitor state changes
+
+```JSX
+function Form() {
+    const [firstName, setFirstName] = React.useState("");
+
+    function handleChange(event) {
+        setFirstName(event.target.value);
+    }
+
+    return (
+        <form>
+            <input
+                type="text"
+                placeholder="First Name"
+                onChange={handleChange}
+                value={firstName}
+            />
+        </form>
+    );
+}
+```
+
+Notice that there's an `event` parameter passed into the handler function we didn't have any input really at the `onChange` property, this is because any event listener will automatically gets an `event` input
+
+We are constantly monitor any change to the input and set the state accordingly. However, as you may imagine, if there are 50 input boxes, we are going to need 50 states and a handle function for each one of them, which isn't the best design. Therefore, we can store them all in an form state object and use an additional `name` property to identify which field has changed:
+
+```JSX
+function Form() {
+    const [form, setForm] = React.useState({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: ""
+    });
+
+    function handleChange(event) {
+        setForm(prevForm => ({
+            ...prevForm,
+            [event.target.name]: event.target.value
+        }));
+    }
+
+    <form>
+        <input
+            type="text"
+            placeholder="First Name"
+            onChange={handleChange}
+            name="firstName"
+            value={form.firstName}
+        />
+        <input
+            type="text"
+            placeholder="Last Name"
+            onChange={handleChange}
+            name="lastName"
+            value={form.lastName}
+        />
+        ...
+        ...
+    </form>
+}
+```
+
+### Textarea
+
+`textarea` in HTML has both the opening and the closing tag, the React team has modified that in JSX so that it is more similar to the `input` element so we can have a better experience using it
+
+```JSX
+// HTML
+<textarea></textarea>
+
+// JSX
+<textarea />
+```
+
+### Checkbox
+
+`checkbox` is an `input` with type of `checkbox` that holds a boolean value of whether the user has checked the box or not
+
+```JSX
+<input type="checkbox" />
+```
+
+And for the handler of `checkbox`, we will no longer be checking the `event.target.value` but rather `event.target.checked` property
+
+### Radio
+
+For radio buttons, we give all radio set the same name, then specify the value we want them to take on when selected
+
+```JSX
+<input
+    type="radio"
+    id="unemployed"
+    name="employment"
+    value="unemployed"
+/>
+<label htmlFor="unemployed">Unemployed</label>
+
+<input
+    type="radio"
+    id="part-time"
+    name="employment"
+    value="part-time"
+/>
+<label htmlFor="part-time">Part-time</label>
+
+<input
+    type="radio"
+    id="full-time"
+    name="employment"
+    value="full-time"
+/>
+<label htmlFor="full-time">Full-time</label>
+```
+
+### Submit
+
+After gathering information, we need a button to submit the information. We can do this either by using an `input` with type `submit` or a plain `button`. Why `button` also works? Because it is found inside of a form, so the button automatically gets the type of `submit`, if you don't want the button to act like `submit`, you need to manually define its type to `button`
+
+```JSX
+<form>
+    <input type="submit" value="Submit" />
+    <button>Submit</button>
+</form>
+```
+
+By default, when the form is submitted, the page will be refreshed, or go to the `action` URL with `method` specified. But we want to bypass that since we don't want to submit the information anywhere, we can add an `onsubmit` handler to the form, and the good thing we are keeping all information in an form data object, we can simply pass the entire object in the handler function to an API or do anything else with the data:
+
+```JSX
+function handleSubmit(event) {
+    event.preventDefault();
+    console.log(form)
+}
+
+<form onSubmit={handleSubmit}>
+    <input type="submit" value="Submit" />
+    <button>Submit</button>
+</form>
+```
+
+## API
+
+An important ability of JavaScript is that it can fetch data from APIs or submit data to APIs. Take a look at an example:
+
+```JSX
+function App() {
+    const [starWarsData, setStarWarsData] = React.useState({})
+
+    console.log("Component rendered")
+
+    fetch("https://swapi.dev/api/people/1")
+        .then(res => res.json())
+        .then(data => setStarWarsData(data))
+
+    return (
+        <div>
+            <pre>{JSON.stringify(starWarsData, null, 2)}</pre>
+        </div>
+    )
+}
+```
+
+At first glance, this code snippet looks OK, but there's an under the hood mechanics that is messing things up. React monitors states, and when states changes, the components with that state will be re-rendered so that the front-end will follow the state. Try to track the above code snippet, when fetch completes, it changes the state with fetched data, then since state changed, this whole `App` component will be re-rendered since it contains the state, so the `App` function will be called again. Then again, the fetch function will be called... You'll find out it's an infinite loop!
+
+This is defined as side effects in React, and we'll see how to handle them
+
+### Side Effect
+
+What are side effects in React? They are things that React cannot handle on its own since they are out of the scope. Some common side effects are:
+
+- localStorage
+- API/Database Interaction
+- Web Sockets
+- ... anything that React isn't in charge of
+
+### useEffect
+
+React provides us a lot of hooks, one we've seen and used is `useState` which gives us the ability to add to and modify React internal states. There's another useful hook that will be used whenever React interacts with anything outside of React, or side effects. It allows us to specify when do we want something to run, see the following example:
+
+```JSX
+function App() {
+    const [starWarsData, setStarWarsData] = React.useState({})
+
+    React.useEffect(() => {
+        fetch("https://swapi.dev/api/people/1")
+        .then(res => res.json())
+        .then(data => setStarWarsData(data))
+    }, []);
+
+    return (
+        <div>
+            <pre>{JSON.stringify(starWarsData, null, 2)}</pre>
+        </div>
+    )
+}
+```
+
+`useEffect` accepts two inputs, the first is a function to run and the second is called a "dependencies array". If we don't pass the second input, there's basically no difference between whether we use `useEffect` or not
+
+- **Note**: If we don't pass the second parameter, the only difference is that the first parameter (the function) will run after the return statement, or, after everything has been rendered to the DOM
+
+If we pass in an empty array like in the example above, we basically tells React only to run the function in `useEffect` the first time it renders this component
+
+Otherwise, if we pass the dependencies array with variables inside of it, the function within `useEffect` will only run when any of the variables in the dependencies array changes comparing to the last render
+
+See the following example where the `fetch` API is only called when state `count` changes, which is controlled by a button
+
+```JSX
+function App() {
+    const [starWarsData, setStarWarsData] = React.useState({})
+    const [count, setCount] = React.useState(1)
+
+    React.useEffect(function() {
+        console.log("Effect ran")
+        fetch(`https://swapi.dev/api/people/${count}`)
+            .then(res => res.json())
+            .then(data => setStarWarsData(data))
+    }, [count])
+
+    return (
+        <div>
+            <h2>The count is {count}</h2>
+            <button onClick={() => setCount(prevCount => prevCount + 1)}>Get Next Character</button>
+            <pre>{JSON.stringify(starWarsData, null, 2)}</pre>
+        </div>
+    )
+}
+```
+
+### useEffect Cleanup
+
+As we are dealing with side effects, interacting with interfaces outside of React, we want to have a method of cleaning up to avoid "memory leak". The following code snippet demonstrates a memory leak:
+
+```JSX
+function WindowTracker() {
+
+    const [windowWidth, setWindowWidth] = React.useState(window.innerWidth)
+
+    React.useEffect(() => {
+        function watchWidth() {
+            setWindowWidth(window.innerWidth)
+        }
+
+        window.addEventListener("resize", watchWidth)
+    }, [])
+
+    return (
+        <h1>Window width: {windowWidth}</h1>
+    )
+}
+
+function App() {
+    const [show, setShow] = React.useState(true)
+
+    function toggle() {
+        setShow(prevShow => !prevShow)
+    }
+
+    return (
+        <div className="container">
+            <button onClick={toggle}>
+                Toggle WindowTracker
+            </button>
+            {show && <WindowTracker />}
+        </div>
+    );
+}
+```
+
+The above code basically dynamically renders the window width by adding an event listener to window resize event. Now if in the `App`, we click the button and toggle of the `WindowTracker` component by using conditional rendering, this component is being removed from the DOM, thus its states are removed. However, the window resize event listener is still registered on the window, it will try to set the state that is already removed which causes a memory leak
+
+We can add a return function to `useEffect` as a clean up function that runs when the component is removed:
+
+```JSX
+React.useEffect(() => {
+    function watchWidth() {
+        console.log("Setting up...")
+        setWindowWidth(window.innerWidth)
+    }
+
+    window.addEventListener("resize", watchWidth)
+
+    return function() {
+        console.log("Cleaning up...")
+        window.removeEventListener("resize", watchWidth)
+    }
+}, [])
+```
+
+Check a [Meme Generator](./meme/) application that utilizes all the mentioned concepts

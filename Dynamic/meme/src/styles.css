@@ -52,17 +52,52 @@ button {
     border: none;
     border-radius: 6px;
     color: white;
+    font-size: 18px;
 }
 
 .meme--image--container {
     width: 80%;
     margin: auto;
     margin-top: 3rem;
+    position: relative;
 }
 
 .meme--image--container>img {
     width: 100%;
     max-width: 600px;
+}
+
+.meme--text {
+    position: absolute;
+    width: 80%;
+    text-align: center;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 15px 0;
+    padding: 0 5px;
+    font-family: impact, sans-serif;
+    font-size: 2em;
+    text-transform: uppercase;
+    color: white;
+    letter-spacing: 1px;
+    text-shadow:
+        2px 2px 0 #000,
+        -2px -2px 0 #000,
+        2px -2px 0 #000,
+        -2px 2px 0 #000,
+        0 2px 0 #000,
+        2px 0 0 #000,
+        0 -2px 0 #000,
+        -2px 0 0 #000,
+        2px 2px 5px #000;
+}
+
+.meme--text--top {
+    top: 0;
+}
+
+.meme--text--bottom {
+    bottom: 0;
 }
 
 @font-face {
