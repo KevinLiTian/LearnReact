@@ -381,7 +381,16 @@ function handleSubmit(event) {
 </form>
 ```
 
-## API
+## Side Effects
+
+What are side effects in React? They are things that React cannot handle on its own since they are out of the scope. Some common side effects are:
+
+- localStorage
+- API/Database Interaction
+- Web Sockets
+- ... anything that React isn't in charge of
+
+### API
 
 An important ability of JavaScript is that it can fetch data from APIs or submit data to APIs. Take a look at an example:
 
@@ -406,15 +415,6 @@ function App() {
 At first glance, this code snippet looks OK, but there's an under the hood mechanics that is messing things up. React monitors states, and when states changes, the components with that state will be re-rendered so that the front-end will follow the state. Try to track the above code snippet, when fetch completes, it changes the state with fetched data, then since state changed, this whole `App` component will be re-rendered since it contains the state, so the `App` function will be called again. Then again, the fetch function will be called... You'll find out it's an infinite loop!
 
 This is defined as side effects in React, and we'll see how to handle them
-
-### Side Effect
-
-What are side effects in React? They are things that React cannot handle on its own since they are out of the scope. Some common side effects are:
-
-- localStorage
-- API/Database Interaction
-- Web Sockets
-- ... anything that React isn't in charge of
 
 ### useEffect
 
