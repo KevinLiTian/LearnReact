@@ -13,3 +13,7 @@ This is my journey of learning ReactJS, feel free to follow along! It is project
 |      [Props](./Props/)      |       Reusable & composable components, data-driven React       |
 |    [Dynamic](./Dynamic/)    |    Interactive React App, state, effects and event listeners    |
 |   [Advanced](./Advanced/)   |       Practice previous concepts and learn advanced React       |
+
+## Contact ME
+
+If you have any questions regarding the material, please feel free to contact me through my emails <kevintian.li@mail.utoronto.ca> or <kevin.li20021106@gmail.com>

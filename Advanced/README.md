@@ -62,3 +62,19 @@ function Component() {
 ```
 
 This might not seem much big of a deal, but under the hood, we free up lots of computation power, so that our app will be more "reactive"
+
+## Practice!
+
+We have almost reach the end! Now it's the time to flex your React skills by building two game!
+
+Checkout the updated [React Facts](./my-app/) website by running `npm start` in that directory to see the effect of switching between light mode and dark mode! Try to use states and conditional rendering to complete it yourself!
+
+Checkout [tenzies](./tenzies/) game by running `npm start` in that directory, play the game and when doing that try to think how to build it with React from scratch, what components do you need? What states do you need? After you have an idea, try to build it yourself! Hint: `useEffect` can be used to check for win condition. The winning animation can be applied by first installing "react-confetti" using the command:
+
+```sh
+npm install react-confetti
+```
+
+Then render `<Confetti />` component in the DOM
+
+If you encounter any difficulties along the way, try to figure it out or search google for a specific technical difficulty. If you really cannot find a way, check the source code of the two projects!
